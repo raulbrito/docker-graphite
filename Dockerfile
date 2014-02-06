@@ -4,7 +4,6 @@ MAINTAINER jlachowski "jalachowski@gmail.com"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y -qq update
-RUN apt-get -y -qq upgrade
 
 # node.js using PPA (for statsd)
 RUN apt-get -y -qq install screen
