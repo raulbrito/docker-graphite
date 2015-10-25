@@ -1,5 +1,5 @@
-From ubuntu:precise
-MAINTAINER jlachowski "jalachowski@gmail.com"
+From ubuntu:trusty
+MAINTAINER jlachowski "raul.brito@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -8,6 +8,7 @@ RUN apt-get -y -qq update
 # node.js using PPA (for statsd)
 RUN apt-get -y -qq install screen
 RUN apt-get -y -qq install python-software-properties
+RUN apt-get -y -qq install software-properties-common
 RUN apt-add-repository ppa:chris-lea/node.js
 RUN apt-get -y -qq update
 RUN apt-get -y -qq install pkg-config make g++
@@ -47,6 +48,7 @@ RUN python /opt/graphite/webapp/graphite/manage.py syncdb --noinput
 # statsd
 RUN git clone git://github.com/etsy/statsd.git /opt/statsd
 ADD assets/localConfig.js /opt/statsd/localConfig.js
+ADD backends/jsonout.js /opt/statsd/backends/jsonout.js
 
 # supervisord
 ADD assets/supervisor-graphite.conf /etc/supervisor/conf.d/graphite.conf
